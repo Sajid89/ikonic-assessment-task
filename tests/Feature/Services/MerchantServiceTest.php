@@ -13,7 +13,7 @@ use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Facades\Queue;
 use Tests\TestCase;
 
-class MerchantServiceTest extends TestCase
+class  MerchantServiceTest extends TestCase
 {
     use RefreshDatabase, WithFaker;
 
@@ -28,7 +28,7 @@ class MerchantServiceTest extends TestCase
             'domain' => $this->faker->domainName(),
             'name' => $this->faker->name(),
             'email' => $this->faker->email(),
-            'api_key' => $this->faker->password()
+            'api_key' => $this->faker->password(),
         ];
     }
 

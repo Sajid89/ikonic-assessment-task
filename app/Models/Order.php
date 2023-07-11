@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use PhpParser\Builder;
 
 /**
  * @property int $id
@@ -38,5 +39,15 @@ class Order extends Model
     public function affiliate()
     {
         return $this->belongsTo(Affiliate::class);
+    }
+
+    /**
+     * get order by id
+     * @param $query
+     * @param $id
+     * @return Builder
+     */
+    public function ScopeByOrderId($query, $id) {
+        return $query->where('id', $id);
     }
 }

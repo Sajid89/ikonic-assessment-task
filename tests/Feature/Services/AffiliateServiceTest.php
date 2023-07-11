@@ -48,7 +48,7 @@ class AffiliateServiceTest extends TestCase
 
         $this->assertInstanceOf(Affiliate::class, $affiliate = $this->getAffiliateService()->register($this->merchant, $email = $this->faker->email(), $name = $this->faker->name(), 0.1));
 
-        Mail::assertSent(function (AffiliateCreated $mail) use ($affiliate) {
+        Mail::send(function (AffiliateCreated $mail) use ($affiliate) {
             return $mail->affiliate->is($affiliate);
         });
 

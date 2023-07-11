@@ -9,6 +9,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Carbon;
 use Laravel\Sanctum\HasApiTokens;
+use PhpParser\Builder;
 
 /**
  * @property int $id
@@ -66,5 +67,15 @@ class User extends Authenticatable
     public function affiliate(): HasOne
     {
         return $this->hasOne(Affiliate::class);
+    }
+
+    /**
+     * get user by email
+     * @param $query
+     * @param $email
+     * @return Builder
+     */
+    public function ScopeUserByEmail($query, $email) {
+        return $query->where('email', $email);
     }
 }

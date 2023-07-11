@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Jobs\PayoutOrderJob;
 use App\Models\Affiliate;
 use App\Models\Merchant;
 use App\Models\Order;
@@ -24,5 +25,12 @@ class OrderService
     public function processOrder(array $data)
     {
         // TODO: Complete this method
+
+        $merchant = Merchant::ByDomain($data['merchant_domain'])->first();
+        $affiliate = $this->affiliateService->register($merchant, $data['customer_email'], $data['customer_name'], 0.1);
+//
+//        $order = Order::ByOrderId($data['order_id'])->first();
+//
+//        return;
     }
 }

@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+use PhpParser\Builder;
 
 /**
  * @property int $id
@@ -20,6 +22,7 @@ class Merchant extends Model
     use HasFactory;
 
     protected $fillable = [
+        'user_id',
         'domain',
         'display_name',
         'turn_customers_into_affiliates',
@@ -34,5 +37,20 @@ class Merchant extends Model
     public function orders(): HasMany
     {
         return $this->hasMany(Order::class);
+    }
+
+    public function affiliate(): HasOne
+    {
+        return $this->hasOne(Affiliate::class);
+    }
+
+    /**
+     * get user by email
+     * @param $query
+     * @param $domain
+     * @return Builder
+     */
+    public function ScopeByDomain($query, $domain) {
+        return $query->where('domain', $domain);
     }
 }
